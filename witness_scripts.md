@@ -2,7 +2,7 @@
 
 Succeeds if username and password match the correct value
 
-Witness Script
+### Witness Script
 ```
 OP_SWAP
 <'username'>
@@ -12,7 +12,29 @@ OP_SHA256
 OP_EQUAL
 ```
 
-Stack Elements
+### Stack Elements
+```
+<'username'>
+<'password'>
+```
+
+# Username & Password Check with Salted Hash
+
+Succeeds if username and password match the correct value. Increases security by salting the password hash.
+
+### Witness Script
+```
+OP_SWAP
+<'username'>
+OP_EQUALVERIFY
+<'salt'>
+OP_CAT
+OP_SHA256
+<0x7a37b85c8918eac19a9089c0fa5a2ab4dce3f90528dcdeec108b23ddf3607b99>
+OP_EQUAL
+```
+
+### Stack Elements
 ```
 <'username'>
 <'password'>
