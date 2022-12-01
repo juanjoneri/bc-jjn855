@@ -1,3 +1,5 @@
+# Detailed Instructions for Regtest
+
 Run bitcoin core
 
 ---
