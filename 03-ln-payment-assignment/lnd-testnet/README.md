@@ -1,16 +1,15 @@
 # Detailed Instructions for Testnet
 
-Run bitcoin core
+## 1. Run bitcoin core
 
----
-lnd instance for alice
+## 2. lnd instance for alice
 
 cd C:\Users\juanj\Documents\Programs\bc-jjn855\03-ln-payment-assignment\lnd-testnet
 
 .\lnd.exe --configfile=alice.conf --bitcoind.dir=D:\Bitcoin
 
----
-lnd wallet for alice
+
+## 3. lnd wallet for alice
 
 On another terminal
 
@@ -36,56 +35,85 @@ On another terminal
 ```
 
 ---
-Send btc alice 
+## 4. Send 100.000 SATs to alice 
 
 1. use the send feature in bitcoin core
 
+```
+Status: 0/unconfirmed, in memory pool
+Date: 11/30/2022 22:17
+To: tb1qt9ludt378xfdnvrxn3r9997e4mm3uyghpysp63
+Debit: -0.00100000 BTC
+Transaction fee: -0.00001410 BTC
+Net amount: -0.00101410 BTC
+Transaction ID: afd8f915d586ee139756f6b20a442ee1294c86cff1ba7f0615483d4a57151724
+Transaction total size: 222 bytes
+Transaction virtual size: 141 bytes
+Output index: 0
+```
+
 2. Wait for confirmations
 
-getnewaddress
 
-```
-[
-  "39a364027871aefb0c1133d729d59ad2bc09fc87328430eccf3e2817a926e4fe"
-]
-```
+## 5. Same for bob
 
-generatetoaddress 5 bcrt1qms6lxwdyxwpgfufm2hleayggn3ahzcgfhvse6p
-
-
-Same for bob
+.\lnd.exe --configfile=bob.conf --bitcoind.dir=D:\Bitcoin
 
 .\lncli.exe --network testnet --rpcserver 127.0.0.1:10010 create
+
+```
+---------------BEGIN LND CIPHER SEED---------------
+ 1. ability    2. wrap     3. reject    4. ride
+ 5. consider   6. hard     7. slab      8. boss
+ 9. awake     10. lake    11. weasel   12. clay
+13. topple    14. farm    15. fortune  16. sponsor
+17. team      18. absorb  19. ability  20. violin
+21. time      22. remind  23. state    24. wire
+---------------END LND CIPHER SEED-----------------
+```
 
 .\lncli.exe --network testnet --rpcserver 127.0.0.1:10010 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon newaddress p2wkh
 
 ```
 {
-    "address": "bcrt1qwtajpxypefgue93hcd7wjl6xgt2ql0klpzxlpj"
+    "address": "tb1qjrraz5am8yltzcxgtnsjfzk0nl5y74vvmrzjdq"
 }
+```
+
+```
+Status: 0/unconfirmed, in memory pool
+Date: 11/30/2022 22:18
+To: tb1qjrraz5am8yltzcxgtnsjfzk0nl5y74vvmrzjdq
+Debit: -0.00100000 BTC
+Transaction fee: -0.00001410 BTC
+Net amount: -0.00101410 BTC
+Transaction ID: 73f4b3d324be92d4cd308b28fea190c4ad3aa0705f3a1f2e4fdae5fadb9d8358
+Transaction total size: 222 bytes
+Transaction virtual size: 141 bytes
+Output index: 1
 ```
 
 Open a channel
 
 1. get bobs pubkey
 
-```
 .\lncli.exe --network testnet --rpcserver 127.0.0.1:10010 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon getinfo
 
-0277c7ffcb3f85285ebe6be5f5a1ac3d4a99d526693bf42b0c02cc8a7c9768ea57
+```
+"identity_pubkey": "02d90059388cf25dfcd338f0e0f00bcce379a35c6a7c39cec04d6a53b92324ce88"
 ```
 
 Alice peer with bob
 ```
-.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon connect 0277c7ffcb3f85285ebe6be5f5a1ac3d4a99d526693bf42b0c02cc8a7c9768ea57@localhost:9737
-{
-
-}
+.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon connect 02d90059388cf25dfcd338f0e0f00bcce379a35c6a7c39cec04d6a53b92324ce88@localhost:9737
 ```
 
 Alice open channel with bob
 ```
-C:\Users\juanj\Documents\Programs\bc-jjn855\lnd>.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon openchannel --node_key=0277c7ffcb3f85285ebe6be5f5a1ac3d4a99d526693bf42b0c02cc8a7c9768ea57 --local_amt=1000000
+.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon openchannel --node_key=02d90059388cf25dfcd338f0e0f00bcce379a35c6a7c39cec04d6a53b92324ce88 --local_amt=20000
+```
+
+```
 {
         "funding_txid": "88b52080b35d87852ce7cc27105bfc534a41f70a29211f68d7bb9e020f75657d"
 }
