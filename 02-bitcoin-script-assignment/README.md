@@ -1,4 +1,10 @@
-# Username & Password Check
+# Assignment 02 - Bitcoin Script
+
+Name    : Juan Neri  
+Email   : juanjo.neri@gmail.com  
+Discord : juanjoneri#0274  
+
+## Username & Password Check
 
 Succeeds if username and password match the correct value
 
@@ -18,7 +24,7 @@ OP_EQUAL
 <'password'>
 ```
 
-# Username & Password Check with Salted Hash
+## Username & Password Check with Salted Hash
 
 Succeeds if username and password match the correct value. Increases security by salting the password hash.
 

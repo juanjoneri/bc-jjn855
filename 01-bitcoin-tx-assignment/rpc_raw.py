@@ -7,9 +7,10 @@ Use https://jlopp.github.io/bitcoin-core-rpc-auth-generator/ to generate config 
 
 To use with windows powershell
 
-python3 -m venv myenf
+python3 -m venv myenv
 .\myenv\Scripts\activate
 pip install python-bitcoinrpc
+python rpc_raw.py
 """
 
 
