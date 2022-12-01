@@ -6,7 +6,7 @@ Discord : juanjoneri#0274
 
 ## Transaction Sumamry
 
-TODO(juanjoneri): Replace transactions
+> You can find the steps I followed under lnd-testnet/
 
 **Channel Open Transaction**  
 txid: a9dcfd30edace911f32e5ae80ce5bc1a40a0a87f562a9c23c5c59235e0f83906  
