@@ -110,12 +110,12 @@ Alice peer with bob
 
 Alice open channel with bob
 ```
-.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon openchannel --node_key=02d90059388cf25dfcd338f0e0f00bcce379a35c6a7c39cec04d6a53b92324ce88 --local_amt=20000
+.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon openchannel --node_key=02d90059388cf25dfcd338f0e0f00bcce379a35c6a7c39cec04d6a53b92324ce88 --local_amt=25000
 ```
 
 ```
 {
-        "funding_txid": "88b52080b35d87852ce7cc27105bfc534a41f70a29211f68d7bb9e020f75657d"
+        "funding_txid": "a9dcfd30edace911f32e5ae80ce5bc1a40a0a87f562a9c23c5c59235e0f83906"
 }
 ```
 
@@ -127,33 +127,51 @@ Alice send payment to bob
 Bob generate invoice:
 ```
 .\lncli.exe --network testnet --rpcserver 127.0.0.1:10010 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon addinvoice --amt=10000
+
+```
 {
-    "r_hash": "7aca319b1b6939ed3331e066cb083570fb30c640e052c86664e5348e3141c822",
-    "payment_request": "lnbcrt100u1p3ksjc7pp50t9rrxcmdyu76ve3upnvkzp4wranp3jqupfvsenyu56guv2peq3qdqqcqzpgxqyz5vqsp56hjl6025kpg2e8vm23l4qjgwd4qap4frjg8akpmxsaau54m5azrs9qyyssqk993zf2rthmu80fqpj5lrq6v0w8r9p5gfuqfnrr4u2tvxjum2c49v6q6ffj5jvfey4vcq5xmneeyp8ftm94y5058xefgz57x7rzvmygp3en4yc",
-    "add_index": "1",
-    "payment_addr": "d5e5fd3d54b050ac9d9b547f50490e6d41d0d523920fdb0766877bca5774e887"
+    "r_hash": "15800846112eb2a8f16e77bef3a93bdaafee133bb7d4d2e8cafa24b00705cd4d",
+    "payment_request": "lntb100u1p3csd9cpp5zkqqs3s396e23utww7l082fmm2h7uyemkl2d96x2lgjtqpc9e4xsdqqcqzpgxqyz5vqsp5wf408wgc4a6yt8mfm582h3xtaylypjxlnuk8w8kgg0f0d32055ps9qyyssqvmuy0glfvquz8kmq4w0n8gdkd97afks9z2529pdjcg5jxquwxtmn6ngvx9m6n2vylmts02zx3htzsmkkpcfwz43kwmsdgrq4g2c3w7qqlw9cee",
+    "add_index": "3",
+    "payment_addr": "726af3b918af74459f69dd0eabc4cbe93e40c8df9f2c771ec843d2f6c54fa503"
 }
 ```
 
 Make alice pay
 ```
-.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon sendpayment --pay_req=lnbcrt100u1p3ksjc7pp50t9rrxcmdyu76ve3upnvkzp4wranp3jqupfvsenyu56guv2peq3qdqqcqzpgxqyz5vqsp56hjl6025kpg2e8vm23l4qjgwd4qap4frjg8akpmxsaau54m5azrs9qyyssqk993zf2rthmu80fqpj5lrq6v0w8r9p5gfuqfnrr4u2tvxjum2c49v6q6ffj5jvfey4vcq5xmneeyp8ftm94y5058xefgz57x7rzvmygp3en4yc
-Payment hash: 7aca319b1b6939ed3331e066cb083570fb30c640e052c86664e5348e3141c822
-Description:
-Amount (in satoshis): 10000
-Fee limit (in satoshis): 500
-Destination: 0277c7ffcb3f85285ebe6be5f5a1ac3d4a99d526693bf42b0c02cc8a7c9768ea57
+.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon sendpayment --pay_req=lntb100u1p3csd9cpp5zkqqs3s396e23utww7l082fmm2h7uyemkl2d96x2lgjtqpc9e4xsdqqcqzpgxqyz5vqsp5wf408wgc4a6yt8mfm582h3xtaylypjxlnuk8w8kgg0f0d32055ps9qyyssqvmuy0glfvquz8kmq4w0n8gdkd97afks9z2529pdjcg5jxquwxtmn6ngvx9m6n2vylmts02zx3htzsmkkpcfwz43kwmsdgrq4g2c3w7qqlw9cee
+```
+
+```
+{
+    "payment_hash": "15800846112eb2a8f16e77bef3a93bdaafee133bb7d4d2e8cafa24b00705cd4d",
+    "value": "10000",
+    "creation_date": "1669871167",
+    "fee": "0",
+    "payment_preimage": "0000000000000000000000000000000000000000000000000000000000000000",
+    "value_sat": "10000",
+    "value_msat": "10000000",
+    "payment_request": "lntb100u1p3csd9cpp5zkqqs3s396e23utww7l082fmm2h7uyemkl2d96x2lgjtqpc9e4xsdqqcqzpgxqyz5vqsp5wf408wgc4a6yt8mfm582h3xtaylypjxlnuk8w8kgg0f0d32055ps9qyyssqvmuy0glfvquz8kmq4w0n8gdkd97afks9z2529pdjcg5jxquwxtmn6ngvx9m6n2vylmts02zx3htzsmkkpcfwz43kwmsdgrq4g2c3w7qqlw9cee",
+    "status": "IN_FLIGHT",
+    "fee_sat": "0",
+    "fee_msat": "0",
+    "creation_time_ns": "1669871167920987400",
+    "htlcs": [
+    ],
+    "payment_index": "5",
+    "failure_reason": "FAILURE_REASON_NONE"
+}
 ```
 
 Check alice balance
 ```
 .\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon channelbalance
 {
-    "balance": "986530",
-    "pending_open_balance": "0",
+    "balance": "9056",
+    "pending_open_balance": "24056",
     "local_balance": {
-        "sat": "986530",
-        "msat": "986530000"
+        "sat": "9056",
+        "msat": "9056000"
     },
     "remote_balance": {
         "sat": "10000",
@@ -168,8 +186,8 @@ Check alice balance
         "msat": "0"
     },
     "pending_open_local_balance": {
-        "sat": "0",
-        "msat": "0"
+        "sat": "24056",
+        "msat": "24056000"
     },
     "pending_open_remote_balance": {
         "sat": "0",
@@ -189,8 +207,8 @@ Check bob balance
         "msat": "10000000"
     },
     "remote_balance": {
-        "sat": "986530",
-        "msat": "986530000"
+        "sat": "9056",
+        "msat": "9056000"
     },
     "unsettled_local_balance": {
         "sat": "0",
@@ -205,8 +223,20 @@ Check bob balance
         "msat": "0"
     },
     "pending_open_remote_balance": {
-        "sat": "0",
-        "msat": "0"
+        "sat": "24056",
+        "msat": "24056000"
     }
+}
+```
+
+Alice close channel
+
+```
+.\lncli.exe --network testnet --rpcserver 127.0.0.1:10009 --macaroonpath data/chain/bitcoin/testnet/admin.macaroon closechannel --funding_txid=a9dcfd30edace911f32e5ae80ce5bc1a40a0a87f562a9c23c5c59235e0f83906 --force
+```
+
+```
+{
+        "closing_txid": "70ad48b49f4320f4d068527c602a58e605b090371d69d941cc9ea0f2e52c55c5"
 }
 ```
